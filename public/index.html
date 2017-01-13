@@ -11,16 +11,20 @@
 </head>
 <body>
   <div class="container">
-	   <h1>Discogs 'disconnect' api demo</h1>
+	   <h1>Discogs api experiment</h1>
      <form>
-       <label for="user">Enter Username</label>
+       <label for="user">Enter Discogs.com Username</label>
        <input type="text" name="user" id="user">
        <input type="submit" value="submit" class="btn">
      </form>
 
+     <img src="" class="hidden" width="200">
+
+	<nav class="hidden">
      <ul id="results"></ul>
      <ul id="pages"></ul>
-		 <a href="#" class="pagination" id="prev">&lt; Prev</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="pagination" id="next">Next &gt;</a>
+	<a href="#" class="pagination" id="prev">&lt; Prev</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="pagination" id="next">Next &gt;</a>
+	</nav>
    </div>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>

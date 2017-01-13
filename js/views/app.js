@@ -27,8 +27,16 @@ var AppView = Backbone.View.extend({
 		var releaseTemplate = _.template('<li><%= artist %> - <%= title %></li>');
 		var paginationTemplate = _.template('<li><a href="#" class="page-number" id="<%= number %>"><%= number %></a></li>');
 		url = '/users/'+searchTerm+'/collection?per_page=25&page='+pageNumber.toString();
+		url2 = '/users/'+searchTerm;
+
+		discogs(headers, url2, function(err, data) {
+			console.log(data);
+			var image = data.avatar_url;
+			$('img').attr('src', image).removeClass('hidden');
+		});
 
 		discogs(headers, url, function(err, data) {
+			
 			var pages = data.pagination.pages;
 			var releases = data.releases;
 
@@ -45,9 +53,11 @@ var AppView = Backbone.View.extend({
 						number: i+1
 					}));
 				}
+				$('nav').removeClass('hidden');
 			}
 			$('#pages li a.active').removeClass('active');
 			$('#pages li a#'+pageNumber).addClass('active');
+
 		});
 	},
 
@@ -59,7 +69,6 @@ var AppView = Backbone.View.extend({
 		} else if (e.currentTarget.id == 'next') {
 			pageNumber = pageNumber += 1;
 		} else if ($(e.currentTarget).hasClass('page-number')) {
-			console.log(e.currentTarget);
 			pageNumber = parseInt(e.currentTarget.id);
 		}
 		this.handleResults(e);
