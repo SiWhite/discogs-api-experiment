@@ -1443,3 +1443,6 @@ td.visible-print,th.visible-print{display:table-cell!important}
 .hidden-print{display:none!important}
 }
 body{background:#fff;color:#000}
+ul#pages{list-style:none;padding:0 0 0 25px}
+ul#pages li{display:inline-block;margin-right:10px}
+ul#pages li a.active{text-decoration:underline}

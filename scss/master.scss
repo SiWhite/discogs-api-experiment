@@ -2,6 +2,22 @@
 @import "bootstrap";
 
 body {
-  background: #fff;
-  color: #000;
+	background: #fff;
+	color: #000;
+}
+
+ul#pages {
+	list-style: none;
+	padding: 0 0 0 25px;
+
+	li {
+		display: inline-block;
+		margin-right: 10px;
+
+		a {
+			&.active {
+				text-decoration: underline;
+			}
+		} 
+	}
 }
