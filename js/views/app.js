@@ -10,6 +10,7 @@ var discogs = require('../discogs');
 var url = '';
 var pageNumber = 1;
 var searchTerm = '';
+var allUsers = new userCollection;
 
 var AppView = Backbone.View.extend({
 	el: 'body',
@@ -41,11 +42,9 @@ var AppView = Backbone.View.extend({
                                     </div>\
                                   </div>');
 
-		// var releaseTemplate = _.template('<li><%= artist %> - <%= title %></li>');
-		// var paginationTemplate = _.template('<li><a href="#" class="page-number" id="<%= number %>"><%= number %></a></li>');
-		// url = '/users/'+searchTerm+'/collection?per_page=25&page='+pageNumber.toString();
+
 		url2 = '/users/'+searchTerm;
-    var allUsers = new userCollection;
+
 		discogs(headers, url2, function(err, data) {
       var user1 = allUsers.create({
         avatar: data.avatar_url,
@@ -57,18 +56,13 @@ var AppView = Backbone.View.extend({
         releasesContributed: data.releases_contributed
       });
 
-
-      //
-      // var nypl = new Library;
-      //
-      // var othello = nypl.create({
-      //   title: "Othello",
-      //   author: "William Shakespeare"
-      // });
-      //console.log(user1);
       var view = new userView({model: user1});
       $('.container').append(view.render().el);
-      console.log(allUsers);
+      console.log(allUsers.length);
+
+      // var releaseTemplate = _.template('<li><%= artist %> - <%= title %></li>');
+  		// var paginationTemplate = _.template('<li><a href="#" class="page-number" id="<%= number %>"><%= number %></a></li>');
+  		// url = '/users/'+searchTerm+'/collection?per_page=25&page='+pageNumber.toString();
 
       // $('.container').append(userTemplate({
       //       avatar: data.avatar_url,
