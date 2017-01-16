@@ -10,18 +10,31 @@ body {
 	display: none;
 }
 
-ul#pages {
-	list-style: none;
-	padding: 0 0 0 25px;
+.user {
+	clear: both;
+  margin-top: 25px;
 
-	li {
-		display: inline-block;
-		margin-right: 10px;
+	img {
+		float: left;
+	}
 
-		a {
-			&.active {
-				text-decoration: underline;
-			}
-		} 
+	.user-data {
+		float: left;
 	}
 }
+
+// ul#pages {
+// 	list-style: none;
+// 	padding: 0 0 0 25px;
+//
+// 	li {
+// 		display: inline-block;
+// 		margin-right: 10px;
+//
+// 		a {
+// 			&.active {
+// 				text-decoration: underline;
+// 			}
+// 		}
+// 	}
+// }

@@ -1,1 +1,1 @@
-# Discogs.com API Experiments
+# Discogs.com Battle!

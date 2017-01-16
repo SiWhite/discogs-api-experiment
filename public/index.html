@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Disconnect demo</title>
+	<title>Discogs Battle!</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,21 +11,42 @@
 </head>
 <body>
   <div class="container">
-	   <h1>Discogs api experiment</h1>
+	   <h1>Discogs Battle!</h1>
      <form>
-       <label for="user">Enter Discogs.com Username</label>
+       <label for="user">Enter first username</label>
        <input type="text" name="user" id="user">
        <input type="submit" value="submit" class="btn">
      </form>
 
-     <img src="" class="hidden" width="200">
+     <div id="users-container">
+     </div>
 
-	<nav class="hidden">
-     <ul id="results"></ul>
-     <ul id="pages"></ul>
-	<a href="#" class="pagination" id="prev">&lt; Prev</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="pagination" id="next">Next &gt;</a>
-	</nav>
+
+  	<nav class="hidden">
+       <ul id="results"></ul>
+       <ul id="pages"></ul>
+  	<a href="#" class="pagination" id="prev">&lt; Prev</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="pagination" id="next">Next &gt;</a>
+  	</nav>
    </div>
+
+   <!-- ========= -->
+	<!-- Template for user -->
+	<!-- ========= -->
+	<script type="text-template" id="user-template">
+    <div class="user clearfix" data-username="<%- username %>">
+      <img src="<%- avatar %>" width="150" />
+      <div class="user-data">
+        <ul>
+          <li>Username: <%- username %></li>
+          <li>Rank: <%- rank %></li>
+          <li>Collection Total: <%- collectionTotal %></li>
+          <li>Buyer Rating: <%- buyerRating %></li>
+          <li>Seller Rating: <%- sellerRating %></li>
+          <li>Release Contributed: <%- releasesContributed %></li>
+          </ul>
+      </div>
+    </div>
+	</script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
 	<script src="bundle.js"></script>
