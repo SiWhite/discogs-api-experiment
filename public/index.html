@@ -18,8 +18,11 @@
      </form>
 
      <div id="users-container">
+        <div id="error" class="hidden">No user by that name, try again.</div>
+        <ul id="users-list">
+            
+        </ul>
      </div>
-
 
   	<nav class="hidden">
        <ul id="results"></ul>
@@ -37,11 +40,11 @@
       <div class="user-data">
         <ul>
           <li>Username: <%- username %></li>
-          <li>Rank: <%- rank %></li>
-          <li>Collection Total: <%- collectionTotal %></li>
-          <li>Buyer Rating: <%- buyerRating %></li>
-          <li>Seller Rating: <%- sellerRating %></li>
-          <li>Release Contributed: <%- releasesContributed %></li>
+          <!-- <li>Rank: <%- rank %></li>
+           <li>Collection Total: <%- collectionTotal %></li>
+           <li>Buyer Rating: <%- buyerRating %></li>
+           <li>Seller Rating: <%- sellerRating %></li>
+           <li>Release Contributed: <%- releasesContributed %></li> -->
           </ul>
       </div>
     </div>

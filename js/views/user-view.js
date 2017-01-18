@@ -3,7 +3,7 @@ var user = require('../models/user');
 var userCollection = require('../collections/users');
 
 var UserView = Backbone.View.extend({
-	el: '#users-container',
+	tagName: 'li',
 
 	events: {
 
