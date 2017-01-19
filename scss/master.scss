@@ -2,23 +2,63 @@
 @import "bootstrap";
 
 body {
-	background: #fff;
-	color: #000;
+	background: $white;
+	color: $black;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 0 0 20px;
+}
+
+.error {
+  color: $red;
+}
+
+.container {
+  text-align: center;
+}
+
+form {
+  .form-group {
+    margin-bottom: 20px;
+    label {
+      display: block;
+    }
+  }
+}
+
+#battle {
+  background-color: $green;
+  border: 1px solid $green;
+}
+
+ul {
+  list-style-type: none;
+  padding:0;
 }
 
 .hidden {
 	display: none;
 }
 
+#users-list {
+  margin-bottom: 50px;
+  li {
+    display: inline-block;
+    float: right;
+
+    &:first-of-type {
+      float: left;
+    }
+  }
+}
+
 .user {
 	clear: both;
 	margin-top: 25px;
-
-	img {
-		float: left;
-	}
-
-	.user-data {
-		float: left;
-	}
 }

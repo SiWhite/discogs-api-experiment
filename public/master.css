@@ -1319,7 +1319,7 @@ button.close{padding:0;cursor:pointer;background:0 0;border:0;-webkit-appearance
 .tooltip.bottom-left .tooltip-arrow{right:5px;margin-top:-5px}
 .tooltip.bottom-right .tooltip-arrow{left:5px;margin-top:-5px}
 .popover{position:absolute;top:0;left:0;z-index:1060;display:none;max-width:276px;padding:1px;text-align:left;text-align:start;font-size:14px;background-color:#fff;border:1px solid #ccc;border:1px solid rgba(0,0,0,.2);border-radius:6px;box-shadow:0 5px 10px rgba(0,0,0,.2)}
-.carousel-caption,.carousel-control{color:#fff;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.carousel-caption,.carousel-control{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6);text-align:center}
 .popover.top{margin-top:-10px}
 .popover.right{margin-left:10px}
 .popover.bottom{margin-top:10px}
@@ -1443,5 +1443,15 @@ td.visible-print,th.visible-print{display:table-cell!important}
 .hidden-print{display:none!important}
 }
 body{background:#fff;color:#000}
+h1{margin-bottom:20px}
+h2{font-size:24px;margin:0 0 20px}
+.error{color:red}
+.container{text-align:center}
+form .form-group{margin-bottom:20px}
+form .form-group label{display:block}
+#battle{background-color:#00e654;border:1px solid #00e654}
+ul{list-style-type:none;padding:0}
+#users-list{margin-bottom:50px}
+#users-list li{display:inline-block;float:right}
+#users-list li:first-of-type{float:left}
 .user{margin-top:25px}
-.user .user-data,.user img{float:left}

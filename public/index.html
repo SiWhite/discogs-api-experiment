@@ -10,44 +10,53 @@
 </head>
 <body>
   <div class="container">
-	   <h1>Discogs Battle!</h1>
-     <form>
-       <label for="user">Enter first username</label>
-       <input type="text" name="user" id="user">
-       <input type="submit" value="submit" class="btn">
-     </form>
-
-     <div id="users-container">
-        <div id="error" class="hidden">No user by that name, try again.</div>
-        <ul id="users-list">
-            
-        </ul>
-     </div>
-
-  	<nav class="hidden">
+    <div class="row">
+     <h1>Discogs Battle!</h1>
+    </div>
+    <div class="row">
+      <div id="error" class="hidden error">No Discogs user by that name, try again.</div>
+      <ul id="users-list" class="clearfix col-xs-4 col-xs-offset-4">
+        <li>
+          <div class="user clearfix" id="player1">
+            <h2>Player 1</h2>
+            <img src="images/default-avatar.svg" width="150" />
+          </div>
+        </li>
+        <li>
+          <div class="user clearfix" id="player2">
+            <h2>Player Two</h2>
+            <img src="images/default-avatar.svg" width="150" />
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+       <form>
+         <div class="form-group">
+           <label for="user">Enter Player 1<br/>Discogs Username:</label>
+           <input type="text" name="user" id="user">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg col-xs-2 col-xs-offset-5">Submit</button>
+       </form>
+       <button class="btn btn-primary btn-lg hidden" id="battle">Battle!</button>
+    </div>
+  	<!-- <nav class="hidden">
        <ul id="results"></ul>
        <ul id="pages"></ul>
   	<a href="#" class="pagination" id="prev">&lt; Prev</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="pagination" id="next">Next &gt;</a>
-  	</nav>
-   </div>
+  	</nav> -->
+</div>
 
    <!-- ========= -->
 	<!-- Template for user -->
 	<!-- ========= -->
 	<script type="text-template" id="user-template">
-    <div class="user clearfix" data-username="<%- username %>">
-      <img src="<%- avatar %>" width="150" />
-      <div class="user-data">
-        <ul>
           <li>Username: <%- username %></li>
           <!-- <li>Rank: <%- rank %></li>
            <li>Collection Total: <%- collectionTotal %></li>
            <li>Buyer Rating: <%- buyerRating %></li>
            <li>Seller Rating: <%- sellerRating %></li>
            <li>Release Contributed: <%- releasesContributed %></li> -->
-          </ul>
-      </div>
-    </div>
 	</script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
