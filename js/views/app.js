@@ -9,21 +9,23 @@ var headers = {
 var discogs = require('../discogs');
 var pageNumber = 1;
 var searchTerm = '';
+var users = {};
 var allUsers = new userCollection;
 
 var AppView = Backbone.View.extend({
 	el: 'body',
 
 	events: {
-		"submit": "handleResults",
+		"submit": "getUser",
 		"click a": "changePage",
+    "click #battle": "handleBattle"
 	},
 
 	initialize: function() {
 
 	},
 
-	handleResults: function(e) {
+	getUser: function(e) {
 		e.preventDefault();
 
 		var searchTerm = $("#user").val();
@@ -47,8 +49,7 @@ var AppView = Backbone.View.extend({
 		  });
 
 			var view = new userView({model: user});
-      var users = allUsers.models;
-      console.log(users);
+      users = allUsers.models;
 
       if (users.length === 1 ) {
         $('#player1 img').attr('src', data.avatar_url);
@@ -61,21 +62,39 @@ var AppView = Backbone.View.extend({
       } else {
         return;
       }
-
-        // $('#users-list li .user').each(function (index) {
-        //     $(this).append(view.render().el);
-        //     console.log(this);
-        // });
-
-			  //$('#users-list').append(view.render().el);
-
-
-
-	  // $.each(users, function(i, user) {
-			// console.log(user.get('username'));
-	  // });
 		});
 	},
+
+  handleBattle: function(e) {
+    var $counter= 0;
+    var comparisonHolder = {};
+    var winner = 0;
+
+    $.each(users, function(i, user) {
+        $counter += 1;
+        comparisonHolder["rank"+$counter] = user.attributes.rank;
+        comparisonHolder["collectionTotal"+$counter] = user.attributes.collectionTotal;
+        comparisonHolder["buyerRating"+$counter] = user.attributes.buyerRating;
+        comparisonHolder["sellerRating"+$counter] = user.attributes.sellerRating;
+        comparisonHolder["releasesContributed"+$counter] = user.attributes.releasesContributed;
+        //console.log( user.attributes.collectionTotal );
+    });
+
+    if (comparisonHolder.rank1 > comparisonHolder.rank2) {
+      winner = 1;
+    } else if (comparisonHolder.rank1 < comparisonHolder.rank2) {
+      winner = 2;
+    }
+
+    if (winner == 1) {
+      console.log('player1 wins');
+    } else if (winner == 2) {
+        console.log('player2 wins');
+    } else if (winner == 0) {
+        console.log('draw');
+    }
+
+  },
 });
 
 module.exports = AppView;
