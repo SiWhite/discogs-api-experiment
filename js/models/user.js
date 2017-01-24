@@ -1,7 +1,7 @@
 var Backbone = require('backbone');
 
 var User = Backbone.Model.extend({
-		defaults: {
+	  defaults: {
       avatar: '',
       username: '',
       rank: 0,

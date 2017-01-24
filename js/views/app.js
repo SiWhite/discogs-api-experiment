@@ -68,7 +68,7 @@ var AppView = Backbone.View.extend({
   handleBattle: function(e) {
     var $counter= 0;
     var comparisonHolder = {};
-    var winner = 0;
+    var winnerArray = [];
 
     $.each(users, function(i, user) {
         $counter += 1;
@@ -77,24 +77,61 @@ var AppView = Backbone.View.extend({
         comparisonHolder["buyerRating"+$counter] = user.attributes.buyerRating;
         comparisonHolder["sellerRating"+$counter] = user.attributes.sellerRating;
         comparisonHolder["releasesContributed"+$counter] = user.attributes.releasesContributed;
-        //console.log( user.attributes.collectionTotal );
     });
 
     if (comparisonHolder.rank1 > comparisonHolder.rank2) {
-      winner = 1;
+      winnerArray.push(1)
     } else if (comparisonHolder.rank1 < comparisonHolder.rank2) {
-      winner = 2;
+      winnerArray.push(2)
+    } 
+    if (comparisonHolder.collectionTotal1 > comparisonHolder.collectionTotal2) {
+      winnerArray.push(1)
+    } else if (comparisonHolder.collectionTotal1 < comparisonHolder.collectionTotal2) {
+      winnerArray.push(2)
+    }
+    if (comparisonHolder.buyerRating1 > comparisonHolder.buyerRating2) {
+      winnerArray.push(1)
+    } else if (comparisonHolder.buyerRating1 < comparisonHolder.buyerRating2) {
+      winnerArray.push(2)
+    }
+    if (comparisonHolder.sellerRating1 > comparisonHolder.sellerRating2) {
+     winnerArray.push(1)
+    } else if (comparisonHolder.sellerRating1 < comparisonHolder.sellerRating2) {
+      winnerArray.push(2)
+    }
+    if (comparisonHolder.releasesContributed1 > comparisonHolder.releasesContributed2) {
+     winnerArray.push(1)
+    } else if (comparisonHolder.releasesContributed1 < comparisonHolder.releasesContributed2) {
+      winnerArray.push(2)
     }
 
-    if (winner == 1) {
+    this.getWinner(winnerArray);
+
+},
+
+getWinner: function(winnerArray) {
+
+    var finalTotals = [];
+    var $counter = 0;
+
+    for (var i = 0; i < 2; i++) {
+      $counter += 1;
+      var numOccurences = $.grep(winnerArray, function (elem) {
+          return elem === $counter;
+      }).length;
+      finalTotals.push(numOccurences);
+    }
+
+    if (finalTotals[0] > finalTotals[1]) {
       console.log('player1 wins');
-    } else if (winner == 2) {
+    } else if (finalTotals[1] > finalTotals[0]) {
         console.log('player2 wins');
-    } else if (winner == 0) {
-        console.log('draw');
+    } else {
+      console.log('it\'s a draw!');
     }
 
-  },
+  }
+
 });
 
 module.exports = AppView;
