@@ -9,56 +9,109 @@
 	<link rel="stylesheet" href="master.css">
 </head>
 <body>
-  <div class="container">
+  <div class="container-fluid container-header">
+    <header class="col-xs-12">
+     <h1><img src="/images/discogs-logo.png" alt="Discogs"/> Battle!<span>*</span></h1>
+    </header>
+  </div>
+  <div class="container site-content">
     <div class="row">
-     <h1>Discogs Battle!</h1>
-    </div>
-    <div class="row">
-      <div id="error" class="hidden error">No Discogs user by that name, try again.</div>
-      <ul id="users-list" class="clearfix col-xs-4 col-xs-offset-4">
-        <li>
-          <div class="user clearfix" id="player1">
-            <h2>Player 1</h2>
-            <img src="images/default-avatar.svg" width="150" />
-          </div>
-        </li>
-        <li>
-          <div class="user clearfix" id="player2">
-            <h2>Player Two</h2>
-            <img src="images/default-avatar.svg" width="150" />
-          </div>
-        </li>
-      </ul>
-      <div class="winner hidden">
-        <h2>The Winner!</h2>
-        <img src="images/default-avatar.svg" width="150" />
+      <div class="intro col-xs-12 col-sm-8 col-sm-offset-2">
+        <p>Enter the names of 2 users from Discogs.com and battle it out for vinyl supremacy!<br><br>The winner is based on some simple calculations comparing each user's stats - it's not very scientific! :)</p>
+      <svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="300" height="300">
+    <defs>
+      <clipPath id="clip">
+        <path d="m150 150 -150 -25 175 175 -25 -150 150 -25 -125 -125 z" />
+      </clipPath>
+      <clipPath id="circ">
+        <circle r="143" cx="150" cy="150" />
+      </clipPath>
+          <radialGradient id="g1" cx="50%" cy="50%" r="50%" fx="15%" fy="15%">
+              <stop stop-color="#fff" offset="0%"/>
+              <stop stop-color="#000" offset="100%" opacity="0"/>
+          </radialGradient>
+          <radialGradient id="g2" cx="50%" cy="50%" r="50%" fx="85%" fy="85%">
+              <stop stop-color="#fff" offset="0%"/>
+              <stop stop-color="#000" offset="100%" opacity="0"/>
+          </radialGradient>
+    </defs>
+  <circle r="145" cx="150" cy="150" fill="#000" stroke="#000" stroke-width="6" />
+  <rect width="150" height="150" fill="url(#g1)" clip-path="url(#circ)" />
+  <rect x="150" y="150" width="150" height="150" fill="url(#g2)" clip-path="url(#circ)" />
+  <circle r="75" cx="150" cy="150" fill="#000" />
+  <circle r="50" cx="150" cy="150" fill="#333" stroke="#444" stroke-width="5"  />
+  <circle r="40" cx="150" cy="150" fill="#eee" />
+  <circle r="4" cx="150" cy="150" fill="#000" />
+  <circle r="45" cx="150" cy="150" fill="none" stroke="#ccc" stroke-width="5" clip-path="url(#clip)" />
+</svg>
+       <button class="col-xs-8 col-xs-offset-2 btn btn-primary btn-lg green" id="start">Commence Battle</button>
       </div>
     </div>
-    <div class="row">
+    <div class="main-content row hidden">
+        <ul id="users-list" class="clearfix">
+          <li class="col-xs-12 col-sm-3 col-sm-offset-3">
+            <div class="user clearfix" id="player1">
+              <h2>Player 1</h2>
+              <img src="images/default-avatar.svg" width="150" />
+            </div>
+          </li>
+          <li class="col-xs-12 col-sm-3">
+            <div class="user clearfix" id="player2">
+              <h2>Player 2</h2>
+              <img src="images/default-avatar.svg" width="150" />
+            </div>
+          </li>
+        </ul>
+    </div>
+    <div class="main-content row hidden">
        <form>
          <div class="form-group">
-           <label for="user">Enter Player 1<br/>Discogs Username:</label>
+           <label for="user">Enter Player <span>1</span><br/>Discogs Username:</label>
            <input type="text" name="user" id="user">
         </div>
-        <button type="submit" class="btn btn-primary btn-lg col-xs-2 col-xs-offset-5">Submit</button>
-       </form>
-       <button class="btn btn-primary btn-lg hidden" id="battle">Battle!</button>
+        <div id="error" class="hidden error"></div>
+        <button class="btn btn-primary btn-lg col-xs-8 col-xs-offset-2 col-sm-2 col-sm-offset-5">Enter</button>
+      </form>
+      <button class="btn btn-primary btn-lg col-xs-8 col-xs-offset-2 col-sm-2 col-sm-offset-5 hidden" id="battle">Battle!</button>
     </div>
+    <div class="row hidden" id="winnerRow">
+      <button class="col-xs-8 col-xs-offset-2 btn btn-primary btn-lg" data-username="" id="winnerCollection">View their collection on Discogs.com</button>
+      <ul id="results"></ul>
+      <ul id="pages"></ul>
+      <button class="col-xs-8 col-xs-offset-2 btn btn-secondary btn-lg" id="restart">Play again!</button>
+    </div>
+  </div>
+<div class="container-fluid container-footer">
+    <footer class="row">
+      <h6 class="credit col-xs-12 col-sm-6">Website by <a href="http://silentdesig.nz" target="_blank">Silent Designs</a></h6>
+      <div class="col-xs-12 col-sm-6">
+        <span class="disclaimer">* Not officially affiliated with discogs.com in any way!</span>
+      </div>
+    </footer>
 </div>
-
    <!-- ========= -->
 	<!-- Template for user -->
 	<!-- ========= -->
 	<script type="text-template" id="user-template">
-          <li>Username: <%- username %></li>
-          <!-- <li>Rank: <%- rank %></li>
-           <li>Collection Total: <%- collectionTotal %></li>
-           <li>Buyer Rating: <%- buyerRating %></li>
-           <li>Seller Rating: <%- sellerRating %></li>
-           <li>Release Contributed: <%- releasesContributed %></li> -->
+           <li class="username">Username: <span><%- username %></span></li>
+           <li class="hidden">Rank: <%- rank %></li>
+           <li class="hidden">Collection Total: <%- collectionTotal %></li>
+           <li class="hidden">Buyer Rating: <%- buyerRating %></li>
+           <li class="hidden">Seller Rating: <%- sellerRating %></li>
+           <li class="hidden">Release Contributed: <%- releasesContributed %></li>
 	</script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+  <script src="snap.svg-min.js"></script>
 	<script src="bundle.js"></script>
+  <script>
+    var s = Snap("#svg");
+    function blink(){
+      s.animate({ry:1}, 220, function(){
+        s.animate({ry: 90}, 300);
+      });
+    };
+    setInterval(blink, 3000);
+  </script>
 </body>
 </html>

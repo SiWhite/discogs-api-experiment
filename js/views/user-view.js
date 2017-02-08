@@ -5,6 +5,12 @@ var userCollection = require('../collections/users');
 var UserView = Backbone.View.extend({
 	tagName: 'ul',
 
+	attributes : function () {
+    	return {
+      		class: "user-stats"
+    	};
+	},
+
 	events: {
 
 	},

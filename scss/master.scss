@@ -4,10 +4,76 @@
 body {
 	background: $white;
 	color: $black;
+  font-family: "Helvetica Neue", Helvetica, "Nimbus Sans", Arial,sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  margin-bottom: 50px;
+  flex: 1;
+
+  p {
+    margin-top: 50px;
+    text-align: left;
+    @media screen and (min-width: 768px){
+      text-align: center;
+    }
+  }
+}
+
+.container-header {
+  background: $grey;
+  color: $white;
+  width: 100%;
+
+  header {
+    text-align: center;
+    img {
+      vertical-align: sub;
+    }
+  }
+}
+
+.intro {
+
+  img {
+    margin: 30px 0;
+  }
+}
+
+.container-footer {
+  background: $grey;
+  color: $white;
+  width: 100%;
+
+  footer {
+    padding-bottom: 5px;
+    @media screen and (max-width: 767px){
+      text-align: center;
+    }
+    .credit {
+      @media screen and (min-width: 768px){
+       margin-top: 12px;
+      }
+    }
+    .disclaimer {
+      font-size: 12px;
+      @media screen and (min-width: 768px){
+        float: right;
+        margin-top: 11px;
+      }
+    }
+  }
 }
 
 h1 {
   margin-bottom: 20px;
+  span {
+    font-size: 0.5em;
+    vertical-align: super;
+  }
 }
 
 h2 {
@@ -17,6 +83,7 @@ h2 {
 
 .error {
   color: $red;
+  margin-bottom: 20px;
 }
 
 .container {
@@ -24,8 +91,9 @@ h2 {
 }
 
 form {
+  margin-top: 30px;
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     label {
       display: block;
     }
@@ -35,6 +103,7 @@ form {
 #battle {
   background-color: $green;
   border: 1px solid $green;
+  margin-top: 50px;
 }
 
 ul {
@@ -46,24 +115,31 @@ ul {
 	display: none;
 }
 
-#users-list {
-  margin-bottom: 50px;
-  li {
-    display: inline-block;
-    float: right;
-
-    &:first-of-type {
-      float: left;
-    }
-  }
-}
-
 .user {
 	clear: both;
 	margin-top: 25px;
 }
 
+
+.btn {
+  white-space: normal !important;
+  &#start {
+    background-color: $green;
+    border-color: $green;
+    margin-top: 20px;
+  }
+  &#restart {
+    margin-top: 20px;
+  }
+}
+
 .winner {
-	clear:both;
-	margin-bottom: 20px;
+  clear:both;
+  margin-bottom: 20px;
+
+  .user-stats {
+    list-style-type: disc;
+    text-align: left;
+    margin: 20px 0 0 85px;
+  }
 }
