@@ -11,40 +11,15 @@
 <body>
   <div class="container-fluid container-header">
     <header class="col-xs-12">
-     <h1><img src="/images/discogs-logo.png" alt="Discogs"/> Battle!<span>*</span></h1>
+     <h1><img src="./images/discogs-logo.png" alt="Discogs"/> Battle!<span>*</span></h1>
     </header>
   </div>
   <div class="container site-content">
     <div class="row">
       <div class="intro col-xs-12 col-sm-8 col-sm-offset-2">
-        <p>Enter the names of 2 users from Discogs.com and battle it out for vinyl supremacy!<br><br>The winner is based on some simple calculations comparing each user's stats - it's not very scientific! :)</p>
-      <svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="300" height="300">
-    <defs>
-      <clipPath id="clip">
-        <path d="m150 150 -150 -25 175 175 -25 -150 150 -25 -125 -125 z" />
-      </clipPath>
-      <clipPath id="circ">
-        <circle r="143" cx="150" cy="150" />
-      </clipPath>
-          <radialGradient id="g1" cx="50%" cy="50%" r="50%" fx="15%" fy="15%">
-              <stop stop-color="#fff" offset="0%"/>
-              <stop stop-color="#000" offset="100%" opacity="0"/>
-          </radialGradient>
-          <radialGradient id="g2" cx="50%" cy="50%" r="50%" fx="85%" fy="85%">
-              <stop stop-color="#fff" offset="0%"/>
-              <stop stop-color="#000" offset="100%" opacity="0"/>
-          </radialGradient>
-    </defs>
-  <circle r="145" cx="150" cy="150" fill="#000" stroke="#000" stroke-width="6" />
-  <rect width="150" height="150" fill="url(#g1)" clip-path="url(#circ)" />
-  <rect x="150" y="150" width="150" height="150" fill="url(#g2)" clip-path="url(#circ)" />
-  <circle r="75" cx="150" cy="150" fill="#000" />
-  <circle r="50" cx="150" cy="150" fill="#333" stroke="#444" stroke-width="5"  />
-  <circle r="40" cx="150" cy="150" fill="#eee" />
-  <circle r="4" cx="150" cy="150" fill="#000" />
-  <circle r="45" cx="150" cy="150" fill="none" stroke="#ccc" stroke-width="5" clip-path="url(#clip)" />
-</svg>
-       <button class="col-xs-8 col-xs-offset-2 btn btn-primary btn-lg green" id="start">Commence Battle</button>
+        <p>Enter the names of 2 users from Discogs.com and battle it out for vinyl supremacy!<br><br>The winner is based on some simple calculations comparing each user's stats<br/>- it's not very scientific! :)</p>
+        <img src="./images/vinyl_record.svg" id="svg" alt="vinyl record" width="150"/>
+       <button class="col-xs-8 col-xs-offset-2 btn btn-primary btn-lg green" id="start">Commence Battle!</button>
       </div>
     </div>
     <div class="main-content row hidden">
@@ -101,17 +76,6 @@
            <li class="hidden">Release Contributed: <%- releasesContributed %></li>
 	</script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
-  <script src="snap.svg-min.js"></script>
 	<script src="bundle.js"></script>
-  <script>
-    var s = Snap("#svg");
-    function blink(){
-      s.animate({ry:1}, 220, function(){
-        s.animate({ry: 90}, 300);
-      });
-    };
-    setInterval(blink, 3000);
-  </script>
 </body>
 </html>

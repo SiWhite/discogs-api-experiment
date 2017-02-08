@@ -4,7 +4,7 @@ var userCollection = require('../collections/users');
 var userView = require('../views/user-view');
 var headers = {
 	'accept-encoding': 'gzip,deflate',
-	'user-agent': 'YourUserAgent/0.0.1 +http://localhost:3000/' // a unique user agent is required
+	'user-agent': 'YourUserAgent/0.0.1 +http://silentdesigns.co.nz/discogs-battle/'// a unique user agent is required
 };
 var discogs = require('../discogs');
 var pageNumber = 1;
@@ -28,7 +28,12 @@ var AppView = Backbone.View.extend({
 	},
 
 	initialize: function() {
-
+    $("#svg").css({
+      "-webkit-animation":"spin 2s infinite linear",
+      "-moz-animation":"spin 2s infinite linear",
+      "-o-animation":"spin 2s infinite linear",
+      "-ms-animation":"spin 2s infinite linear"
+    });
 	},
 
   showtBattle: function(e) {
