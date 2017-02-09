@@ -2,11 +2,6 @@ var Backbone = require('backbone');
 var user = require('../models/user');
 var userCollection = require('../collections/users');
 var userView = require('../views/user-view');
-var headers = {
-	'accept-encoding': 'gzip,deflate',
-	'user-agent': 'YourUserAgent/0.0.1 +http://silentdesigns.co.nz/discogs-battle/'// a unique user agent is required
-};
-var discogs = require('../discogs');
 var pageNumber = 1;
 var searchTerm = '';
 var users = {};
@@ -44,6 +39,7 @@ var AppView = Backbone.View.extend({
 
 	getUser: function(e) {
 		e.preventDefault();
+    var that = this;
 
     if (!$('#user').val()) {
       $('#error').text('Please enter a username.').removeClass('hidden');
@@ -51,9 +47,23 @@ var AppView = Backbone.View.extend({
     }
 
 		var searchTerm = $("#user").val();
-		var url = '/users/'+searchTerm;
+		var url = '//api.discogs.com/users/'+searchTerm;
 
-		discogs(headers, url, function(err, data) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "jsonp",
+        success: function (data) {
+            that.handleUser(data);
+        },
+    });
+  },
+
+
+		handleUser: function(data) {
+
+      var userdata = data.data;
+      console.log(userdata);
 
 			if ( data.hasOwnProperty("message") ) {
 				$('#error').text('No Discogs user by that name, please try again.').removeClass('hidden');
@@ -61,25 +71,25 @@ var AppView = Backbone.View.extend({
 			}
 
 		  var user = allUsers.create({
-				avatar: data.avatar_url,
-				username: data.username,
-				rank: data.rank,
-				collectionTotal: data.num_collection,
-				buyerRating: data.buyer_rating,
-				sellerRating: data.seller_rating,
-				releasesContributed: data.releases_contributed
+				avatar: userdata.avatar_url,
+				username: userdata.username,
+				rank: userdata.rank,
+				collectionTotal: userdata.num_collection,
+				buyerRating: userdata.buyer_rating,
+				sellerRating: userdata.seller_rating,
+				releasesContributed: userdata.releases_contributed
 		  });
 
 			var view = new userView({model: user});
       users = allUsers.models;
 
       if (users.length === 1 ) {
-        $('#player1 img').attr('src', data.avatar_url);
+        $('#player1 img').attr('src', userdata.avatar_url);
         $('#player1').append(view.render().el);
         $('label[for="user"] span').text('2');
         $('#user').val('');
       } else if ( users.length === 2 ) {
-        $('#player2 img').attr('src', data.avatar_url);
+        $('#player2 img').attr('src', userdata.avatar_url);
         $('#player2').append(view.render().el);
         $('form').addClass('hidden');
         $('#battle').removeClass('hidden');
@@ -88,7 +98,6 @@ var AppView = Backbone.View.extend({
       }
 
       $('.error').addClass('hidden');
-		});
 	},
 
   handleBattle: function(e) {
