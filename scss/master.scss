@@ -100,6 +100,10 @@ form {
   }
 }
 
+#loader {
+  margin: 20px 0;
+}
+
 #battle {
   background-color: $green;
   border: 1px solid $green;
@@ -117,6 +121,11 @@ ul {
 
 .hidden {
 	display: none;
+}
+
+.invisible {
+  clear: both;
+  visibility: hidden;
 }
 
 .user {

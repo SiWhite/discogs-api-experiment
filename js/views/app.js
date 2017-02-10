@@ -40,11 +40,14 @@ var AppView = Backbone.View.extend({
 	getUser: function(e) {
 		e.preventDefault();
     var that = this;
+    var $loader = $('#loader');
 
     if (!$('#user').val()) {
       $('#error').text('Please enter a username.').removeClass('hidden');
-          return;
+      return;
     }
+
+    $loader.removeClass('invisible');
 
 		var searchTerm = $("#user").val();
 		var url = '//api.discogs.com/users/'+searchTerm;
@@ -53,19 +56,28 @@ var AppView = Backbone.View.extend({
         type: "GET",
         url: url,
         dataType: "jsonp",
+        timeout: 5000,
         success: function (data) {
             that.handleUser(data);
+            $loader.addClass('invisible');
         },
+        error: function(data, textStatus, errorThrown) {
+          if (data.status == 404) {
+            $('#error').text('No user by that name, sorry.').removeClass('hidden');
+          } else {
+            $('#error').text('Something went wrong, please try again.').removeClass('hidden');
+          }
+          $loader.addClass('invisible');
+        }
     });
   },
-
 
 		handleUser: function(data) {
 
       var userdata = data.data;
       console.log(userdata);
 
-			if ( data.hasOwnProperty("message") ) {
+			if ( userdata.hasOwnProperty("message") ) {
 				$('#error').text('No Discogs user by that name, please try again.').removeClass('hidden');
     			return;
 			}
