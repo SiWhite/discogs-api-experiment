@@ -1,3 +1,3 @@
 # Discogs.com Battle!
 
-Battle for vinyl supremacy: http://silentdesigns.co.nz/discogs-battle/
+Battle for vinyl supremacy: https://silentdesigns.co.nz/discogs-battle/
